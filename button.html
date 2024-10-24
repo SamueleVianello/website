@@ -1,0 +1,61 @@
+<!-- button.html -->
+<button class="button rounded-base" role="button" aria-label="Click to perform an action" id="customButton">
+    Click Me
+</button>
+
+<script>
+    // JavaScript for handling click events
+    document.getElementById('customButton').addEventListener('click', function(event) {
+        alert('Button clicked!');
+    });
+</script>
+
+<style>
+    :root {
+        --main: #88aaee;
+        --bg: #dfe5f2;
+        --text: #000;
+        --border: #000;
+        --dark-bg: #272933;
+        --dark-text: #eeefe9;
+        --dark-border: #000;
+        --shadow-light: 4px 4px 0px 0px #000;
+        --shadow-dark: 4px 4px 0px 0px #000;
+        --hover-transform: 4px;
+    }
+
+    /* Button Styles */
+    .button {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text);
+        background-color: var(--main);
+        border: 2px solid var(--border);
+        border-radius: 5px;
+        box-shadow: var(--shadow-light);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .button:hover {
+        transform: translate(var(--hover-transform), var(--hover-transform));
+        box-shadow: none;
+    }
+
+    /* Dark Mode Support */
+    @media (prefers-color-scheme: dark) {
+        .button {
+            color: var(--text);
+            background-color: var(--main);
+            border-color: var(--dark-border);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .button:hover {
+            box-shadow: none;
+        }
+    }
+</style>

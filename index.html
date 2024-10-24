@@ -3,97 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Personal website landing page">
-    <title>Your Name | Personal Website</title>
+    <title>Personal Homepage</title>
     <style>
+        :root {
+            /* Light mode colors */
+            --main: #88aaee;
+            --bg: #dfe5f2;
+            --text: #000;
+            --border: #000;
+            --shadow-light: 4px 4px 0px 0px #000;
+            --shadow-transform-x: 4px;
+            --shadow-transform-y: 4px;
+
+            /* Dark mode colors */
+            --dark-bg: #272933;
+            --dark-text: #eeefe9;
+            --dark-border: #000;
+            --secondary-black: #212121;
+        }
+
+        /* Dark mode media query */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --main: #88aaee;
+                --bg: var(--dark-bg);
+                --text: var(--dark-text);
+                --border: var(--dark-border);
+                --shadow-light: 4px 4px 0px 0px var(--dark-border);
+            }
+        }
+
         body {
             font-family: Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
         }
-        header {
-            background-color: #333;
+
+        .header {
+            background-color: var(--main);
             color: white;
-            padding: 20px;
+            padding: 1rem;
             text-align: center;
+            font-weight: 700;
+            box-shadow: var(--shadow-light);
         }
-        header h1 {
-            margin: 0;
+
+        .content {
+            padding: 2rem;
+            font-weight: 500;
         }
-        nav {
-            text-align: center;
-            margin-top: 15px;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-        }
-        section {
-            padding: 20px;
-            text-align: center;
-        }
-        .about, .services, .contact {
-            background-color: white;
-            margin: 20px auto;
-            padding: 20px;
-            max-width: 800px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        footer {
-            background-color: #333;
+
+        .footer {
+            background-color: var(--secondary-black);
             color: white;
+            padding: 1rem;
             text-align: center;
-            padding: 10px 0;
-            bottom: 0;
+            font-weight: 500;
+            position: fixed;
             width: 100%;
+            bottom: 0;
+            box-shadow: var(--shadow-light);
+        }
+
+        .button-container {
+            margin-top: 2rem;
+        }
+
+        /* Shared utility for buttons */
+        .rounded-base {
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <h1>Your Name</h1>
-        <p>Welcome to My Personal Website</p>
+    <header class="header">
+        <h1>Welcome to My Personal Website</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="brutalistcv.html"> Brutalist CV</a>
+            <a href="about.html">About</a>
+            <a href="samplecv.html" aria-current="page">Sample CV</a>
+        </nav>
     </header>
 
-    <!-- Navigation Links -->
-    <nav>
-        <a href="#about">About Me</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
-    <!-- About Section -->
-    <section id="about" class="about">
+    <div class="content">
         <h2>About Me</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a volutpat arcu. Nulla in mauris et metus accumsan tempus. Nulla facilisi.</p>
-    </section>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel orci vel lorem facilisis interdum. 
+            Vivamus pharetra venenatis sapien nec vestibulum.
+        </p>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <h2>My Services</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare orci ac purus varius, et consectetur urna luctus. Praesent vitae justo vel erat tempus posuere.</p>
-        <ul>
-            <li>Service 1: Lorem ipsum dolor sit amet.</li>
-            <li>Service 2: Consectetur adipiscing elit.</li>
-            <li>Service 3: Phasellus scelerisque sapien vel.</li>
-        </ul>
-    </section>
+        <div class="button-container" id="buttonContainer">
+            <!-- Button will be dynamically loaded here -->
+        </div>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2>Contact Me</h2>
-        <p>If you would like to get in touch, feel free to send me an email at:</p>
-        <p><a href="mailto:yourname@example.com">yourname@example.com</a></p>
-    </section>
-
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Your Name - All Rights Reserved</p>
+    <footer class="footer">
+        <p>&copy; 2024 My Personal Website</p>
     </footer>
 
+    <script>
+        // Function to load the button component dynamically
+        function loadButtonComponent() {
+            const buttonContainer = document.getElementById('buttonContainer');
+            fetch('button.html')
+                .then(response => response.text())
+                .then(data => {
+                    buttonContainer.innerHTML = data;
+                })
+                .catch(error => console.error('Error loading button:', error));
+        }
+
+        // Load the button when the page is fully loaded
+        window.addEventListener('load', loadButtonComponent);
+    </script>
+    
 </body>
 </html>
